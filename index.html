@@ -100,16 +100,13 @@
       border-bottom: 1px solid rgba(0,0,0,0.04);
     }
 
-    .top-nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 4px 2px;
-      scrollbar-width: none;
-    }
-    .top-nav::-webkit-scrollbar {
-      display: none;
-    }
+   .top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 2px;
+}
+
 
     .top-nav a {
       white-space: nowrap;
@@ -430,6 +427,15 @@
       .grid-summary {
         grid-template-columns: 1fr;
       }
+
+      .top-nav {
+    justify-content: flex-start;
+  }
+
+  .top-nav a {
+    flex: 1 1 calc(50% - 8px); /* dos botones por fila aprox */
+    justify-content: center;
+  }
     }
   </style>
 </head>
@@ -919,3 +925,4 @@
   </div>
 </body>
 </html>
+
