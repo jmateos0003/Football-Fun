@@ -33,6 +33,23 @@
       scroll-behavior: smooth;
     }
 
+    @media (max-width: 640px) {
+  body {
+    padding: 16px 12px 60px;
+  }
+  .grid-summary {
+    grid-template-columns: 1fr;
+  }
+
+  /* 🔻 En móvil el menú deja de ser sticky */
+  .top-nav-wrapper {
+    position: static;
+    top: auto;
+    backdrop-filter: none;
+    border-bottom: none;
+  }
+}
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
                    system-ui, -system-ui, "Segoe UI", sans-serif;
@@ -923,4 +940,5 @@
   </div>
 </body>
 </html>
+
 
