@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -98,19 +99,24 @@
       backdrop-filter: blur(14px);
       margin-bottom: 12px;
       border-bottom: 1px solid rgba(0,0,0,0.04);
+      text-align:center;
     }
 
-   .top-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 4px 2px;
-}
-
+    .top-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px;
+      scrollbar-width: none;
+justify-content: center; 
+    }
+    .top-nav::-webkit-scrollbar {
+      display: none;
+    }
 
     .top-nav a {
       white-space: nowrap;
-      font-size: 12px;
+      font-size: 15px;
       padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.06);
@@ -147,7 +153,7 @@
     }
 
     .card h2 {
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 4px;
       letter-spacing: -0.02em;
       display: flex;
@@ -160,9 +166,10 @@
     }
 
     .card p.subtitle {
-      font-size: 13px;
-      color: var(--text-secondary);
+      font-size: 14px;
+      color: #B29124;
       margin-bottom: 10px;
+    font-weight: 550; 
     }
 
     .kpi-value {
@@ -189,7 +196,7 @@
     }
 
     .section-title {
-      font-size: 24px;
+      font-size: 27px;
       font-weight: 700;
       margin: 36px 0 10px;
       letter-spacing: -0.03em;
@@ -351,28 +358,33 @@
     }
 
     .conclusions ul {
-      list-style: none;
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
+  list-style: none;
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 0;
+  margin: 0;
+  columns: 1 !important;        /* 🔒 fuerza 1 columna */
+}
 
-    .conclusions li {
-      margin-bottom: 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 6px 8px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.015);
-    }
+.conclusions li {
+  margin-bottom: 8px;
+  padding: 6px 8px 6px 20px;    /* hueco para el punto */
+  border-radius: 12px;
+  background: rgba(0,0,0,0.015);
+  position: relative;           /* para colocar el bullet */
+  display: block;               /* 🧱 cada li ocupa toda la fila */
+}
 
-    .conclusions li::before {
-      content: "•";
-      color: var(--accent);
-      font-size: 16px;
-      line-height: 1.2;
-      margin-top: 1px;
-    }
+.conclusions li::before {
+  content: "•";
+  color: var(--accent);
+  font-size: 16px;
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  line-height: 1;
+}
+
 
     .note {
       font-size: 12px;
@@ -389,8 +401,10 @@
     }
 
     .simple-list li {
-      margin-bottom: 6px;
+      margin-bottom: 15px;
     }
+
+
 
     .pill-tag {
       display: inline-flex;
@@ -427,15 +441,6 @@
       .grid-summary {
         grid-template-columns: 1fr;
       }
-
-      .top-nav {
-    justify-content: flex-start;
-  }
-
-  .top-nav a {
-    flex: 1 1 calc(50% - 8px); /* dos botones por fila aprox */
-    justify-content: center;
-  }
     }
   </style>
 </head>
@@ -449,7 +454,7 @@
       <h1>Football &amp; Fun · Rendimiento de campañas</h1>
       <p>Resumen visual y análisis de las campañas activas en Meta del
         <strong>24 oct</strong> al <strong>22 nov 2025</strong>, incluyendo alcance,
-        inversión y leads (clics), a la espera de disponer de datos de inscripciones.</p>
+        inversión y leads (clics).</p>
     </header>
 
     <!-- NAV SCROLL -->
@@ -469,7 +474,7 @@
     <section id="resumen">
       <div class="grid-summary">
         <article class="card">
-          <h2><span class="icon">👀</span>Visibilidad &amp; leads</h2>
+          <h2></span>Visibilidad &amp; leads</h2>
           <p class="subtitle">Impacto global de las 2 campañas</p>
           <div class="kpi-value">125.799</div>
           <div class="kpi-label">personas alcanzadas</div>
@@ -489,12 +494,12 @@
           <p class="note">
             En este informe consideramos <strong>lead</strong> a cualquier persona que hace
             clic en el anuncio y visita la web, ya que la medición de inscripciones
-            vía píxel se ha activado recientemente.
+            vía píxel se ha activado recientemente (este fin de semana).
           </p>
         </article>
 
         <article class="card">
-          <h2><span class="icon">💶</span>Inversión</h2>
+          <h2>Inversión</h2>
           <p class="subtitle">Coste por resultado muy eficiente</p>
           <div class="kpi-value">346,74&nbsp;€</div>
           <div class="kpi-label">invertidos en el periodo analizado</div>
@@ -505,7 +510,7 @@
           </div>
           <div class="kpi-row">
             <span>CPM medio</span>
-            <strong>1,72&nbsp;€/1.000 imp.</strong>
+            <strong>1,72&nbsp;€/1.000 impresiones</strong>
           </div>
           <div class="kpi-row">
             <span>Frecuencia media</span>
@@ -514,7 +519,7 @@
         </article>
 
         <article class="card">
-          <h2><span class="icon">⚡️</span>Lectura rápida</h2>
+          <h2>Lectura rápida</h2>
           <p class="subtitle">Cómo resumir el rendimiento</p>
           <div class="kpi-row">
             <span>F&amp;F Academy – Noviembre</span>
@@ -522,11 +527,11 @@
           </div>
           <div class="kpi-row">
             <span>Navidad F&amp;F 25/26</span>
-            <strong>campaña en fase de test</strong>
+            <strong>campaña reciente</strong>
           </div>
           <div class="kpi-row">
             <span>Calidad del tráfico</span>
-            <strong>~1 de cada 29 personas que ve el anuncio entra</strong>
+            <strong>1 de cada 29 personas que ve el anuncio hace click</strong>
           </div>
           <p class="note">
             Falta incorporar aún las inscripciones como conversión. El foco de este
@@ -539,7 +544,7 @@
 
     <!-- AUDIENCIA -->
     <section id="audiencia">
-      <h2 class="section-title"><span class="emoji">👨‍👩‍👧‍👦</span> Audiencia y segmentación</h2>
+      <h2 class="section-title">Audiencia y segmentación</h2>
       <p class="section-subtitle">
         Cómo estamos impactando a las familias interesadas en fútbol y actividad física
         en el entorno de Bilbao.
@@ -547,7 +552,7 @@
 
       <div class="campaign-grid">
         <article class="card">
-          <h2><span class="icon">🎯</span>Configuración actual</h2>
+          <h2>Configuración actual</h2>
           <p class="subtitle">Segmentación utilizada en las campañas</p>
 
           <dl class="metrics">
@@ -575,24 +580,24 @@
         </article>
 
         <article class="card">
-          <h2><span class="icon">🧪</span>Propuestas de mejora</h2>
-          <p class="subtitle">Ideas para seguir afinando la audiencia</p>
+          <h2>Propuestas de mejora</h2>
+          <p class="subtitle">Ideas para seguir afinando la audiencia. <span style="font-weight:bold; color:#0f9d58;">(dudas en verde)</span></p>
 
           <ul class="simple-list">
             <li>
               <strong>Más allá de Bilbao.</strong> Mantener Bilbao como núcleo, pero
               probar un segundo conjunto con un radio algo mayor (+30–40 km) o
-              incorporando poblaciones cercanas con fácil acceso a Derio.
+              incorporando poblaciones cercanas con fácil acceso a Derio. <span style="font-weight:bold; color:#0f9d58;">¿Tiene sentido?</span>
+
             </li>
             <li>
               <strong>Padres con hijos de 6–11 años.</strong> Meta permite segmentar
               también a este tramo, muy relevante para campamentos de iniciación.
-              Probar un conjunto específico para este grupo.
+              Añadir este segmento también.<span style="font-weight:bold; color:#0f9d58;"> ¿Tiene sentido?</span>
             </li>
             <li>
-              <strong>Separar por tramo de hijos/as.</strong> Crear dos conjuntos:
-              6–12 y 13–17, usando el mismo anuncio, para identificar qué grupo
-              genera más leads al menor coste.
+              <strong>Separar por sexos. </strong> Crear dos conjuntos:
+              uno para padres y otro para madres. La publicidad dirigida a hombres es más barata. Más clicks, menos presupuesto.
             </li>
             <li>
               <strong>Escalar solo con costes controlados.</strong> Si al ampliar
@@ -602,8 +607,8 @@
           </ul>
 
           <p class="note">
-            Todas estas mejoras deberían probarse como <strong>tests A/B</strong>,
-            nunca cambiando la audiencia principal de golpe.
+            Algunas de estas mejoras podrían probarse como <strong>tests A/B</strong>,
+            en lugar de cambiar la audiencia principal de golpe.
           </p>
         </article>
       </div>
@@ -611,7 +616,7 @@
 
     <!-- DETALLE POR CAMPAÑA -->
     <section id="campanas">
-      <h2 class="section-title"><span class="emoji">📣</span> Detalle por campaña</h2>
+      <h2 class="section-title"> Detalle por campaña</h2>
       <p class="section-subtitle">
         Comparativa de las campañas «F&amp;F Academy – Noviembre» y «Navidad F&amp;F 25/26».
       </p>
@@ -687,7 +692,7 @@
 
     <!-- MEDICIÓN DE CONVERSIONES -->
     <section id="conversiones">
-      <h2 class="section-title"><span class="emoji">🎯</span> Medición de conversiones &amp; atribución</h2>
+      <h2 class="section-title">Medición de conversiones &amp; atribución</h2>
       <p class="section-subtitle">
         Situación actual del píxel y cómo se contarán las inscripciones a partir de ahora.
       </p>
@@ -755,7 +760,7 @@
 
     <!-- GRÁFICOS -->
     <section id="graficos">
-      <h2 class="section-title"><span class="emoji">📊</span> Gráficos comparativos</h2>
+      <h2 class="section-title">Gráficos comparativos</h2>
       <p class="section-subtitle">
         Visualización rápida de volumen (impresiones), leads (clics) e inversión
         entre ambas campañas.
@@ -823,9 +828,9 @@
 
     <!-- RESUMEN PARA NO EXPERTOS -->
     <section id="resumen-simple">
-      <h2 class="section-title"><span class="emoji">🙂</span> Resumen sencillo (para quien pasa de métricas)</h2>
+      <h2 class="section-title">Resumen sencillo</h2>
       <article class="card">
-        <h3 style="font-size:16px; margin-bottom:8px;">Qué está pasando en palabras normales</h3>
+        <h3 style="font-size:16px; margin-bottom:8px;">Qué está pasando </h3>
         <ul class="simple-list">
           <li>
             Hemos enseñado anuncios a unas <strong>126.000 personas</strong> de
@@ -838,10 +843,10 @@
           <li>
             De esas personas, <strong>7.068 han hecho clic</strong> en algún
             anuncio y han ido a la web. Es decir,
-            <strong>aprox. 1 de cada 29 personas que ve el anuncio entra</strong>.
+            <strong>aprox. 1 de cada 29 personas que ve el anuncio entra al link</strong>.
           </li>
           <li>
-            Cada visita (lead) nos está costando unos <strong>5 céntimos</strong>,
+            Cada visita (lead) os está costando unos <strong>5 céntimos</strong>,
             un coste muy bueno para este tipo de campañas.
           </li>
           <li>
@@ -860,10 +865,10 @@
 
     <!-- CONCLUSIONES -->
     <section id="conclusiones">
-      <h2 class="section-title"><span class="emoji">🧭</span> Conclusiones &amp; próximos pasos</h2>
+      <h2 class="section-title">Conclusiones &amp; próximos pasos</h2>
       <div class="conclusions">
         <article class="card">
-          <h3><span class="icon">✅</span>Qué está funcionando</h3>
+          <h3>Qué está funcionando</h3>
           <ul>
             <li>
               La campaña de noviembre es el motor principal:
@@ -887,7 +892,7 @@
         </article>
 
         <article class="card">
-          <h3><span class="icon">🚀</span>Oportunidades de mejora</h3>
+          <h3>Oportunidades de mejora</h3>
           <ul>
             <li>
               <strong>Aprovechar el nuevo evento de conversión.</strong>
@@ -895,16 +900,10 @@
               <em>coste por inscripción</em>, no solo en leads, y tomar
               decisiones de presupuesto en función de ese dato.
             </li>
+            
             <li>
-              <strong>Optimizar la campaña de Navidad antes de escalar.</strong>
-              Trabajar creatividades y segmentación hasta acercar su CTR y
-              costes a los de noviembre antes de invertir los 670&nbsp;€ completos.
-            </li>
-            <li>
-              <strong>Testear ampliaciones de audiencia controladas.</strong>
-              Probar radius mayor y padres con hijos de 6–11 años en
-              conjuntos específicos, comparando resultados con la audiencia
-              actual antes de generalizar cambios.
+              <strong>Ampliaciones de audiencia controladas.</strong>
+              Probar radius mayor y añadir padres con hijos de 6–11 años. Probar a futuro dos tipos de audiencia para comparar comportamiento padres VS. madres. 
             </li>
             <li>
               <strong>Revisar la landing de inscripción.</strong>
@@ -925,4 +924,3 @@
   </div>
 </body>
 </html>
-
