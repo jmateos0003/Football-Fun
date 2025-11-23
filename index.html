@@ -102,14 +102,13 @@
       text-align:center;
     }
 
-    .top-nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 4px 2px;
-      scrollbar-width: none;
-justify-content: center; 
-    }
+   .top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* ⬅️ ¡ESTO LOS CENTRA! */
+  gap: 8px;
+  padding: 4px 2px;
+}
     .top-nav::-webkit-scrollbar {
       display: none;
     }
@@ -924,3 +923,4 @@ justify-content: center;
   </div>
 </body>
 </html>
+
