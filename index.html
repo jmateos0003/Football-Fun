@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -882,6 +884,614 @@
         </div>
       </div>
     </section>
+    <!-- MODALIDADES - VERSIÓN CARRUSEL (SOLO MÓVIL) -->
+    <style>
+      .ffun-modes-carousel {
+        display: none;
+      }
+
+      @media (max-width: 767px) {
+        .ffun-modes-carousel {
+          display: block;
+          background: #050608;
+          padding: 2.5rem 0 1rem;
+          color: #ffffff;
+          font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .ffun-modes-container {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 0 1.25rem;
+        }
+
+        .ffun-cards-track {
+          display: flex;
+          gap: 0.9rem;
+          overflow-x: auto;
+          padding: 0 0.75rem 0.9rem;
+          scroll-snap-type: x mandatory;
+        }
+
+        .ffun-cards-track::-webkit-scrollbar {
+          height: 6px;
+        }
+        .ffun-cards-track::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .ffun-cards-track::-webkit-scrollbar-thumb {
+          background: rgba(255,255,255,0.12);
+          border-radius: 999px;
+        }
+
+        /* Cards con "peeking": se ve un poco de la anterior y la siguiente cuando estás en la 2 */
+        .ffun-card {
+          background: #10141c;
+          border-radius: 1.6rem;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.06);
+          box-shadow: 0 18px 46px rgba(0,0,0,0.55);
+          transition: transform 0.18s ease, box-shadow 0.18s ease;
+          flex: 0 0 88%;
+          max-width: 88%;
+          margin-right: 0.5rem;
+          scroll-snap-align: center;
+        }
+
+        .ffun-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 22px 60px rgba(0,0,0,0.7);
+        }
+
+        .ffun-card-media {
+          position: relative;
+          aspect-ratio: 16/9;
+          overflow: hidden;
+        }
+
+        .ffun-card-media img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1.02);
+        }
+
+        .ffun-card-label {
+          position: absolute;
+          left: 0.85rem;
+          top: 0.8rem;
+          padding: 0.18rem 0.7rem;
+          border-radius: 999px;
+          background: rgba(0,0,0,0.7);
+          font-size: 0.7rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .ffun-card-body {
+          padding: 1.05rem 1.1rem 0.9rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+        }
+
+        .ffun-card-title {
+          font-size: 1.05rem;
+          font-weight: 600;
+          margin: 0;
+        }
+
+        .ffun-card-title span {
+          color: #f6c744;
+          font-weight: 700;
+        }
+
+        .ffun-card-meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.35rem;
+          margin: 0.15rem 0 0.5rem;
+          font-size: 0.75rem;
+        }
+
+        .ffun-chip {
+          padding: 0.22rem 0.65rem;
+          border-radius: 999px;
+          background: #171c26;
+          border: 1px solid rgba(255,255,255,0.12);
+          font-size: 0.75rem;
+          color: #a7b0c2;
+        }
+
+        .ffun-card-text {
+          font-size: 0.8rem;
+          color: #a7b0c2;
+          margin: 0;
+          line-height: 1.45;
+        }
+
+        .ffun-card-footer {
+          padding: 0.6rem 1.1rem 1.1rem;
+          margin-top: auto;
+        }
+
+        .ffun-btn-primary {
+          width: 100%;
+          border-radius: 999px;
+          padding: 0.6rem 1.1rem;
+          border: none;
+          background: #8a6b1b;
+          color: #ffffff;
+          font-size: 0.9rem;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+          transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        }
+
+        .ffun-btn-primary:hover {
+          transform: translateY(-1px);
+          background: #a88320;
+          box-shadow: 0 18px 48px rgba(0,0,0,0.75);
+        }
+
+        .ffun-carousel-nav {
+          margin-top: 1.4rem;
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.7rem;
+          padding: 0 2rem 0 0;
+        }
+
+        .ffun-nav-btn {
+          width: 38px;
+          height: 38px;
+          border-radius: 999px;
+          border: none;
+          background: #f5f5f7;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+          transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        }
+
+        .ffun-nav-btn span {
+          display: inline-block;
+          font-size: 1rem;
+          color: #8a6b1b;
+        }
+
+        .ffun-nav-btn:hover {
+          transform: translateY(-1px);
+          background: #8a6b1b;
+          box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+        }
+
+        .ffun-nav-btn:focus,
+        .ffun-nav-btn:active,
+        .ffun-nav-btn:focus-visible {
+          background: #8a6b1b;
+          box-shadow: 0 10px 26px rgba(0,0,0,0.3);
+          outline: none;
+        }
+
+        
+        .ffun-nav-btn:hover span,
+        .ffun-nav-btn:focus span,
+        .ffun-nav-btn:active span {
+          color: #FFFFFF;
+        }
+      }
+    </style>
+
+    <section class="ffun-modes-carousel">
+      <div class="ffun-modes-container">
+        <div class="ffun-cards-track">
+
+          <!-- MINI -->
+          <article class="ffun-card">
+            <div class="ffun-card-media">
+              <img src="IMAGEN-WEB-MINI.jpg" alt="Football &amp; Fun MINI">
+              <span class="ffun-card-label">4–6 años · 2020–2018</span>
+            </div>
+            <div class="ffun-card-body">
+              <h3 class="ffun-card-title">Football &amp; Fun <span>MINI</span></h3>
+              <div class="ffun-card-meta">
+                <span class="ffun-chip">9:00–14:00h</span>
+                <span class="ffun-chip">Grupos reducidos</span>
+              </div>
+              <p class="ffun-card-text">
+                Para los más peques: juegos, psicomotricidad y mucho balón.
+                Se inician en el fútbol mientras se lo pasan en grande.
+              </p>
+            </div>
+            <div class="ffun-card-footer">
+              <a href="#inscripcion">
+                <button class="ffun-btn-primary">Reserva tu plaza</button>
+              </a>
+            </div>
+          </article>
+
+          <!-- PRO -->
+          <article class="ffun-card">
+            <div class="ffun-card-media">
+              <img src="IMAGEN-WEB-PRO.jpg" alt="Football &amp; Fun PRO">
+              <span class="ffun-card-label">7–14 años · 2017–2011</span>
+            </div>
+            <div class="ffun-card-body">
+              <h3 class="ffun-card-title">Football &amp; Fun <span>PRO</span></h3>
+              <div class="ffun-card-meta">
+                <span class="ffun-chip">Tecnificación</span>
+                <span class="ffun-chip">Campo + gimnasio</span>
+              </div>
+              <p class="ffun-card-text">
+                Para quienes ya juegan en equipo y quieren mejorar técnica, toma de decisiones
+                y físico durante las vacaciones.
+              </p>
+            </div>
+            <div class="ffun-card-footer">
+              <a href="#inscripcion">
+                <button class="ffun-btn-primary">Reserva tu plaza</button>
+              </a>
+            </div>
+          </article>
+
+          <!-- PORTEROS -->
+          <article class="ffun-card">
+            <div class="ffun-card-media">
+              <img src="IMAGEN-WEB-PORTEROS.jpg" alt="Football &amp; Fun PORTEROS">
+              <span class="ffun-card-label">Porteros/as · 2017–2011</span>
+            </div>
+            <div class="ffun-card-body">
+              <h3 class="ffun-card-title">Football &amp; Fun <span>PORTEROS</span></h3>
+              <div class="ffun-card-meta">
+                <span class="ffun-chip">Trabajo específico</span>
+                <span class="ffun-chip">Porteros</span>
+              </div>
+              <p class="ffun-card-text">
+                Entrenadores especialistas en portería para trabajar blocaje, vuelo,
+                uno contra uno y confianza bajo palos.
+              </p>
+            </div>
+            <div class="ffun-card-footer">
+              <a href="#inscripcion">
+                <button class="ffun-btn-primary">Reserva tu plaza</button>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="ffun-carousel-nav">
+          <button class="ffun-nav-btn" type="button" data-dir="prev" aria-label="Ver anterior">
+            <span>&larr;</span>
+          </button>
+          <button class="ffun-nav-btn" type="button" data-dir="next" aria-label="Ver siguiente">
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        var track = document.querySelector('.ffun-cards-track');
+        if (!track) return;
+
+        var cards = track.querySelectorAll('.ffun-card');
+        var prevBtn = document.querySelector('.ffun-nav-btn[data-dir="prev"]');
+        var nextBtn = document.querySelector('.ffun-nav-btn[data-dir="next"]');
+
+        function getScrollAmount() {
+          if (!cards.length) return 300;
+          var card = cards[0];
+          var style = window.getComputedStyle(card);
+          var marginRight = parseFloat(style.marginRight) || 0;
+          return card.offsetWidth + marginRight;
+        }
+
+        function scroll(dir) {
+          var amount = getScrollAmount();
+          track.scrollBy({
+            left: dir === 'next' ? amount : -amount,
+            behavior: 'smooth'
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            scroll('prev');
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            scroll('next');
+          });
+        }
+      })();
+    </script>
+<!-- ENTRENADORES TITULADOS (ACORDEÓN APPLE STYLE) -->
+<section class="section" id="entrenadores-titulados">
+  <div class="container">
+
+    <!-- CABECERA -->
+    <div class="section-header">
+      <div class="section-eyebrow">SELLO DE CALIDAD DIMENSION FOOTBALL</div>
+      <h2 class="section-title">Entrenadores titulados</h2>
+      <p class="section-sub">
+        Entrenadores formados en canteras profesionales y con años de experiencia real.
+        Un equipo que combina exigencia, cercanía y pasión por enseñar.
+      </p>
+    </div>
+
+    <!-- TARJETA TIPO APPLE -->
+    <div class="coaches-card">
+
+      <!-- COLUMNA IZQUIERDA (ACORDEÓN) -->
+      <div class="coaches-content">
+
+        <div class="coach-accordion">
+
+          <!-- Item 1 -->
+          <article class="coach-accordion-item active">
+            <button class="coach-accordion-toggle" type="button">
+              <span class="coach-title">Fútbol con metodología</span>
+              <span class="coach-arrow" aria-hidden="true"></span>
+            </button>
+
+            <div class="coach-accordion-body">
+              <p>
+                Metodología profesional adaptada a cada edad y nivel. Cada sesión tiene un
+                objetivo técnico y táctico claro, con progresiones pensadas para que el jugador
+                note evolución real en pocos días. No es ludoteca: se entrena de verdad,
+                con balón siempre presente.
+              </p>
+
+              <div class="coach-image-mobile">
+                <img src="Contreras-ok-1024x987.png" alt="Entrenador">
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="coach-accordion-item">
+            <button class="coach-accordion-toggle" type="button">
+              <span class="coach-title">Valores y equipo</span>
+              <span class="coach-arrow" aria-hidden="true"></span>
+            </button>
+
+            <div class="coach-accordion-body">
+              <p>
+                Trabajamos respeto, esfuerzo y compañerismo en cada ejercicio. Corregimos gestos
+                y actitudes explicando el porqué, para que aprendan a competir con intensidad,
+                pero también con fair play. Queremos que se lleven amigos nuevos y un recuerdo
+                positivo del fútbol.
+              </p>
+
+              <div class="coach-image-mobile">
+                <img src="Contreras-ok-1024x987.png" alt="Entrenador">
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="coach-accordion-item">
+            <button class="coach-accordion-toggle" type="button">
+              <span class="coach-title">Conciliación real</span>
+              <span class="coach-arrow" aria-hidden="true"></span>
+            </button>
+
+            <div class="coach-accordion-body">
+              <p>
+                Horario de mañana pensado para que las familias puedan organizarse con calma,
+                y servicio de lanzadera para que no tengas que depender del coche cada día.
+                Tú ganas en tranquilidad y ellos disfrutan de un entorno seguro,
+                cuidado y muy controlado.
+              </p>
+
+              <div class="coach-image-mobile">
+                <img src="Contreras-ok-1024x987.png" alt="Entrenador">
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA (IMAGEN SOLO ESCRITORIO) -->
+      <div class="coaches-media">
+        <img src="Contreras-ok-1024x987.png" alt="Entrenador" class="coaches-image">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== BASE ===== */
+
+  #entrenadores-titulados .container {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .coaches-card {
+    background: #ffffff;
+    border-radius: 1.4rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.12);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr);
+  }
+
+  .coaches-content {
+    padding: 1.8rem 1.9rem 2rem;
+  }
+
+  .coaches-media {
+    padding: 2.4rem 2.6rem;
+    background: #f6f2e9; /* color beige estilo Adri */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .coaches-image {
+    width: 100%;
+    max-width: 420px;
+    object-fit: contain;
+    box-shadow: none !important;
+  }
+
+  /* ===== ACORDEÓN ===== */
+
+  .coach-accordion-item {
+    border-bottom: 1px solid #e0e0e5;
+  }
+
+  .coach-accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .coach-accordion-toggle {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .coach-title {
+    flex: 1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+	text-align: left;
+  }
+
+  .coach-arrow {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    border: 1px solid #cccccc;
+    position: relative;
+  }
+
+  .coach-arrow::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid #666;
+    border-bottom: 1.5px solid #666;
+    transform: translate(-50%, -60%) rotate(45deg);
+    transition: transform .25s ease;
+  }
+
+  .coach-accordion-item.active .coach-arrow::before {
+    transform: translate(-50%, -40%) rotate(-135deg);
+  }
+
+  .coach-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .28s ease;
+    padding-right: 1.4rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #4b4b4f;
+  }
+
+  .coach-accordion-item.active .coach-accordion-body {
+    max-height: 550px;
+  }
+
+  /* ===== IMAGEN DENTRO DE CADA ITEM (MÓVIL) ===== */
+
+  .coach-image-mobile {
+    display: none;
+    text-align: center;
+  }
+
+  .coach-image-mobile img {
+    max-width: 260px;
+    width: 70%;
+    height: auto;
+    margin: 1.2rem auto 1.6rem;
+    border-radius: 1rem;
+    object-fit: contain;
+  }
+
+  /* ===== RESPONSIVE ===== */
+
+  @media (max-width: 900px) {
+    .coaches-card {
+      grid-template-columns: 1fr;
+    }
+
+    .coaches-media {
+      display: none;
+    }
+
+    .coach-image-mobile {
+      display: block;
+    }
+
+    .coach-accordion-body {
+      padding-right: 0;
+    }
+
+    .coach-title {
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #entrenadores-titulados .container {
+      padding: 0 1.1rem;
+    }
+
+    .coaches-card {
+      border-radius: 1.6rem;
+    }
+  }
+</style>
+
+<script>
+  // ACORDEÓN — ahora funciona perfecto:
+  // - Si abres uno, cierra los demás
+  // - Si vuelves a tocar el que está abierto → se cierra
+  (function () {
+    var container = document.getElementById('entrenadores-titulados');
+    if (!container) return;
+
+    var items = container.querySelectorAll('.coach-accordion-item');
+    if (!items.length) return;
+
+    items.forEach(function (item) {
+      var btn = item.querySelector('.coach-accordion-toggle');
+
+      btn.addEventListener('click', function () {
+        var isActive = item.classList.contains('active');
+
+        // cerrar todos
+        items.forEach(i => i.classList.remove('active'));
+
+        // si el que hice click estaba cerrado → abrir
+        if (!isActive) item.classList.add('active');
+      });
+    });
+  })();
+</script>
+
 	
 	<!-- VALORES / PARA PADRES -->
     <section class="section" id="familias">
